@@ -100,7 +100,7 @@ window.onload = function(){
 		
 		ctx.save();
 		ctx.beginPath();
-		ctx.fillStyle = "black";
+		ctx.fillStyle = "white";
 		ctx.fillRect(0,0,cw,ch);
 		ctx.closePath();
         
@@ -110,8 +110,8 @@ window.onload = function(){
 		
 		text("Core", "black","15pt arial", -20,7);
 		
-		//Mercury white line
-		circleStroke(40,"white",0,0,"1");
+		//Mercury black line
+		circleStroke(40,"black",0,0,"1");
 		
 		//Mercury
 		ctx.rotate(time / 30);  /*.restore and .save doesn't work on rotate()*/
@@ -120,9 +120,9 @@ window.onload = function(){
 		
 		//line(-40,0,0,0);
 		
-		//Venus white line                
+		//Venus black line                
 		ctx.translate(-40,0);   //reset translate
-		circleStroke(60,"white",0,0,"1");
+		circleStroke(60,"black",0,0,"1");
 		
 		//Venus
 		ctx.rotate(time / 100 - (time / 90));  /*.restore and .save doesn't work on rotate()*/		ctx.translate(60,0);
@@ -130,9 +130,9 @@ window.onload = function(){
 		
 		line(-60,0,0,0);
 		
-		//Earth white line
+		//Earth black line
 		ctx.translate(-60,0);
-		circleStroke(90,"white",0,0,"2");
+		circleStroke(90,"black",0,0,"2");
 		
 		//Earth
 		ctx.rotate(time / 100 - (time / 80));
@@ -144,11 +144,11 @@ window.onload = function(){
 		//Moon.. nobody likes the moon anyway :P
 		//  ctx.rotate(time/120);
 		//  ctx.translate(20,0);
-		//   circle(4,"white",0,0);
+		//   circle(4,"black",0,0);
 		
-		//Mars white line
+		//Mars black line
 		ctx.translate(-90,0);
-		circleStroke(120,"white",0,0,"2");
+		circleStroke(120,"black",0,0,"2");
 		
 		//Mars
 		ctx.rotate(time / 120 - (time / 50));
@@ -163,9 +163,9 @@ window.onload = function(){
 		//circleStroke(160,"#151515",0,0,"35");
 		
 		
-		//jupiter white line
+		//jupiter black line
 		ctx.translate(0,0);
-		circleStroke(220,"white",0,0,"2");
+		circleStroke(220,"black",0,0,"2");
 		
 		//jupiter
 		ctx.rotate(time / 120 - (time / 50));
@@ -174,9 +174,9 @@ window.onload = function(){
 		
 		//line(-220,0,0,0);
 		
-		//saturn white line
+		//saturn black line
 		ctx.translate(-220,0);
-		circleStroke(300,"white",0,0,"2");
+		circleStroke(300,"black",0,0,"2");
 		
 		//saturn
 		ctx.rotate(time / 120 - (time / 90));
@@ -189,9 +189,9 @@ window.onload = function(){
 		ctx.translate(0,0);
 		//circleStroke(50,"#747474",0,0,"3");
 		
-		//uranus white line
+		//uranus black line
 		ctx.translate(-300,0);
-		circleStroke(340,"white",0,0,"2");
+		circleStroke(340,"black",0,0,"2");
 		
 		//uranus
 		ctx.rotate(time / 120 - (time / 90));
@@ -200,9 +200,9 @@ window.onload = function(){
 		
 		//line(340,0,0,0);
 		
-		//neptune white line
+		//neptune black line
 		ctx.translate(340,0);
-		circleStroke(380,"white",0,0,"2");
+		circleStroke(380,"black",0,0,"2");
 		
 		//neptune
 		ctx.rotate(time / 120 - (time / 140));
