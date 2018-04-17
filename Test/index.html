@@ -106,38 +106,38 @@ window.onload = function(){
         
 		//Core - center
 		ctx.translate(cw/2,ch/2);
-		circle(25,"yellow",0,0);
+		circle(25,"gray",0,0);
 		
 		//text("Core", "black","15pt arial", -20,7);
 		
-		//Mercury black line
+		//1 black line
 		circleStroke(40,"black",0,0,"1");
 		
-		//Mercury
+		//1
 		ctx.rotate(time / 30);  /*.restore and .save doesn't work on rotate()*/
 		ctx.translate(40,0);
-		circle(3.8,"#898989",0,0);
+		circle(3.8,"#ff0033",0,0);
 		
 		//line(-40,0,0,0);
 		
-		//Venus black line                
+		//2 black line                
 		ctx.translate(-40,0);   //reset translate
 		circleStroke(60,"black",0,0,"1");
 		
-		//Venus
+		//2
 		ctx.rotate(time / 100 - (time / 90));  /*.restore and .save doesn't work on rotate()*/		ctx.translate(60,0);
-		circle(9,"#b9955b",0,0);
+		circle(9,"#ff0033",0,0);
 		
 		line(-60,0,0,0);
 		
-		//Earth black line
+		//3 black line
 		ctx.translate(-60,0);
 		circleStroke(90,"black",0,0,"2");
 		
-		//Earth
+		//3
 		ctx.rotate(time / 100 - (time / 80));
 		ctx.translate(90,0);
-		circle(10,"#2f2fc1",0,0);
+		circle(10,"#ff0033",0,0);
 		
 		//line(-90,0,0,0);
 		
@@ -146,14 +146,14 @@ window.onload = function(){
 		//  ctx.translate(20,0);
 		//   circle(4,"black",0,0);
 		
-		//Mars black line
+		//4 black line
 		ctx.translate(-90,0);
 		circleStroke(120,"black",0,0,"2");
 		
-		//Mars
+		//4
 		ctx.rotate(time / 120 - (time / 50));
 		ctx.translate(120,0);
-		circle(15,"#9f5e13",0,0);
+		circle(15,"#ff0033",0,0);
 		
 		//line(-120,0,0,0);
 		
@@ -163,51 +163,52 @@ window.onload = function(){
 		//circleStroke(160,"#151515",0,0,"35");
 		
 		
-		//jupiter black line
+		//5 black line
 		ctx.translate(0,0);
 		circleStroke(220,"black",0,0,"2");
 		
-		//jupiter
+		//5
 		ctx.rotate(time / 120 - (time / 50));
 		ctx.translate(220,0);
-		circle(45,"#ef602c",0,0);
+		circle(45,"#ff0033",0,0);
 		
 		//line(-220,0,0,0);
 		
-		//saturn black line
+		//6 black line
 		ctx.translate(-220,0);
 		circleStroke(300,"black",0,0,"2");
 		
-		//saturn
+		//6
 		ctx.rotate(time / 120 - (time / 90));
 		ctx.translate(300,0);
-		circle(35,"#c76743",0,0);
+		circle(35,"#ff0033",0,0);
 		
 		//line(-300,0,0,0);
 		
-		//saturn asteroid belt 
+		//6 asteroid belt 
 		ctx.translate(0,0);
 		//circleStroke(50,"#747474",0,0,"3");
 		
-		//uranus black line
+		//7 black line
 		ctx.translate(-300,0);
 		circleStroke(340,"black",0,0,"2");
 		
-		//uranus
+		//7
 		ctx.rotate(time / 120 - (time / 90));
 		ctx.translate(-340,0);
-		circle(23,"#b843c7",0,0);
+		circle(23,"#ff0033",0,0);
 		
 		//line(340,0,0,0);
 		
-		//neptune black line
+		//8 black line
 		ctx.translate(340,0);
 		circleStroke(380,"black",0,0,"2");
 		
-		//neptune
+		//8
 		ctx.rotate(time / 120 - (time / 140));
 		ctx.translate(-380,0);
-		circle(20,"#43aec7",0,0);
+		circle(20,"#ff0033",0,0);
+		circleStroke(22,"grey",0,0);
 		
 		//line(380,0,0,0);
 		
@@ -218,6 +219,36 @@ window.onload = function(){
 	}
 	
     window.requestAnimationFrame(animate);
+
+           //react infomation
+        i = 0, r;
+
+       // on hover the colour of the rectangles are blue
+        while (r = rects[i++])
+            context.rect(r.x, r.y, r.w, r.h);
+            context.fillStyle = "blue";
+            context.fill();
+
+        canvas.onmousemove = function (e) {
+
+           
+            var rect = this.getBoundingClientRect(),
+                x = e.clientX - rect.left,
+                y = e.clientY - rect.top,
+                i = 0, r;
+
+            context.clearRect(0, 0, canvas.width, canvas.height);
+
+            // off hover the colour of the rectangles are yellow
+            while (r = rects[i++]) {
+              
+                context.beginPath();
+                context.rect(r.x, r.y, r.w, r.h);
+                context.fillStyle = context.isPointInPath(x, y) ? "blue":"yellow";
+                context.fill();
+            }
+
+        };
 }    
     /*  links:
         
@@ -229,7 +260,7 @@ window.onload = function(){
 </script>
 <head>
 	<meta charset="UTF-8">
-	<title>Solar System</title>
+	<title>Nearby Student Radar</title>
 </head>
 <body>
 
