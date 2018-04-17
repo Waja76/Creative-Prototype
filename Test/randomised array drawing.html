@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Canvas Hover</title>
+	</head>
+<body>
+	 <h4>Hover the rectangle to change the color</h4>
+	<canvas id="demo" width="400" height="400"></canvas>
+    <script>
+        var b_canvas = document.getElementById("demo");
+var b_context = b_canvas.getContext("2d");
+
+var sizes = [100, 200, 300, 350]; // just an array
+var b = sizes.length; //better practice storing the lenght of the array in a variable
+
+function drawIt() {
+  var c = sizes[Math.floor(Math.random()*b)];// randomiser
+  b_context.clearRect(0, 0, b_canvas.width, b_canvas.height); // clear the canvas to redraw
+  b_context.fillRect(50, 25, c, 100); // draw the rectangle
+  console.log(c); //show the value of c as it is randomly selected from the array
+}
+
+setInterval(drawIt,2000); //sets the delay for redrawing at 2 seconds
+    </script>
+</body>
+</html>
