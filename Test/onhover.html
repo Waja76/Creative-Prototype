@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Canvas Hover</title>
+	</head>
+<body>
+	 <h4>Hover the rectangle to change the color</h4>
+    <canvas id="mycanvas" width=300 height=200 style="border:5px solid green"></canvas>
+    <script>
+        var canvas = document.getElementById("mycanvas"),
+        //draws canvas 
+        context = canvas.getContext("2d"),
+        //draws rectangles
+        rects = [
+            {
+                x: 20,
+                y: 10,
+                w: 50,
+                h: 50
+            },
+
+            {
+                x: 200,
+                y: 10,
+                w: 50,
+                h: 50
+            }
+        ],
+        //react infomation
+        i = 0, r;
+
+       // on hover the colour of the rectangles are blue
+        while (r = rects[i++])
+            context.rect(r.x, r.y, r.w, r.h);
+            context.fillStyle = "blue";
+            context.fill();
+
+        canvas.onmousemove = function (e) {
+
+           
+            var rect = this.getBoundingClientRect(),
+                x = e.clientX - rect.left,
+                y = e.clientY - rect.top,
+                i = 0, r;
+
+            context.clearRect(0, 0, canvas.width, canvas.height);
+
+            // off hover the colour of the rectangles are yellow
+            while (r = rects[i++]) {
+              
+                context.beginPath();
+                context.rect(r.x, r.y, r.w, r.h);
+                context.fillStyle = context.isPointInPath(x, y) ? "blue":"yellow";
+                context.fill();
+            }
+
+        };
+    </script>
+</body>
+</html>
