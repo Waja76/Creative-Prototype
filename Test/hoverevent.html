@@ -7,8 +7,11 @@
 <script type='text/javascript'>//<![CDATA[
 
             // function to build circle
-            function circleShape(x, y, r) {
+            function circleShape(x, y, r,ctx) {
                 ctx.beginPath();
+                ctx.fillStyle = "#ff0033";
+                ctx.lineWidth = 5;
+            ctx.stroke(); 
                 ctx.arc(x, y, r, 0, Math.PI * 2, true);
             }
 
@@ -17,22 +20,24 @@ $(window).load(function(){
     // does not seem to affect code
     //ctx.stroke = "black";
     // draws shape
-    ctx.beginPath();
-    ctx.arc(95,50,40,0,2*Math.PI);
+    //ctx.beginPath();
+    //ctx.arc(95,50,40,0,2*Math.PI);
     // breaks when put in
-    //circleShape(95,50,40);
+    circleShape(95,50,40,ctx);
     // does not seem to affect code
     //ctx.fillStyle = '#ff0033';
     ctx.fill();
     $('#canvas').hover( function() {
         // on hover turns black
-            ctx.fillStyle = 'black';
-            ctx.fill();
+            ctx.strokeStyle = 'grey';
+            ctx.lineWidth = 5;
+            ctx.stroke();
         },
         // on hover turns red
         function() {
-            ctx.fillStyle = '#ff0033';
-            ctx.fill();         
+            ctx.strokeStyle = '#ff0033';
+            ctx.lineWidth = 0;
+            ctx.stroke();        
     });
 });//]]>  
 </script>
