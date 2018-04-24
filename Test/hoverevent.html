@@ -14,18 +14,24 @@
 
 $(window).load(function(){
     var ctx = document.getElementById('canvas').getContext('2d');
-    ctx.stroke = "red";
+    // does not seem to affect code
+    //ctx.stroke = "black";
+    // draws shape
     ctx.beginPath();
     ctx.arc(95,50,40,0,2*Math.PI);
+    // breaks when put in
     //circleShape(95,50,40);
-    ctx.fillStyle = 'black';
+    // does not seem to affect code
+    //ctx.fillStyle = '#ff0033';
     ctx.fill();
     $('#canvas').hover( function() {
-            ctx.fillStyle = 'red';
+        // on hover turns black
+            ctx.fillStyle = 'black';
             ctx.fill();
         },
+        // on hover turns red
         function() {
-            ctx.fillStyle = 'black';
+            ctx.fillStyle = '#ff0033';
             ctx.fill();         
     });
 });//]]>  
