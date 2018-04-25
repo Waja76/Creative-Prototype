@@ -21,12 +21,23 @@
       function drawRect(myRectangle, context) {
         context.beginPath();
         context.rect(myRectangle.x, myRectangle.y, myRectangle.width, myRectangle.height);
-        context.fillStyle = '#8ED6FF';
+        context.fillStyle = '#ff0033';
         context.fill();
         context.lineWidth = myRectangle.borderWidth;
-        context.strokeStyle = 'black';
+        context.strokeStyle = 'grey';
         context.stroke();
       }
+
+      function drawCircle(myCircle, context) {
+        context.beginPath();
+        context.arc(myCircle.x, myCircle.y, myCircle.r,0, Math.PI * 2, true);
+        context.fillStyle = '#ff0033';
+        context.fill();
+        context.lineWidth = myCircle.borderWidth;
+        context.strokeStyle = 'grey';
+        context.stroke();
+      }
+
       function animate(lastTime, myRectangle, runAnimation, canvas, context) {
         if(runAnimation.value) {
           // update
@@ -85,7 +96,7 @@
           animate(time, myRectangle, runAnimation, canvas, context);
         }
       });
-      
+
       drawRect(myRectangle, context);
 
     </script>
