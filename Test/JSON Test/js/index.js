@@ -13,12 +13,6 @@ function draw(x,y)
 {
   ctx.clearRect(0, 0, w*2, h*2);
 
-var Orbit = JSON.parse( '{"radius": 40, "colour": "none"}' ); // simmple object
-ctx.beginPath();
-ctx.arc(w,h,Orbit.radius,0,2*Math.PI); // draw the Orbit
-ctx.fillStyle = Orbit['colour']; // what colour?
-ctx.stroke();
-
 var Orbit2 = JSON.parse( '{"radius": 60, "colour": "none"}' ); // simmple object
 ctx.beginPath();
 ctx.arc(w,h,Orbit2.radius,0,2*Math.PI); // draw the Orbit
@@ -61,73 +55,63 @@ ctx.arc(w,h,Orbit7.radius,0,2*Math.PI); // draw the Orbit
 ctx.fillStyle = Orbit7['colour']; // what colour?
 ctx.stroke();
 
-var Sphere = JSON.parse( '{"radius": 25, "colour": "grey"}' ); // simmple object
+var Core = JSON.parse( '{"radius": 25, "colour": "grey"}' ); // simmple object
 ctx.beginPath();
-ctx.arc(w,h,Sphere.radius,0,2*Math.PI); // draw the Sphere
-ctx.fillStyle = Sphere['colour']; // what colour?
+ctx.arc(w,h,Core.radius,0,2*Math.PI); // draw the Core
+ctx.fillStyle = Core['colour']; // what colour?
 ctx.fill();
 
-var Sphere2 = JSON.parse( '{"radius": 3.8, "colour": "#ff0033"}' ); // simmple object
+// ctx.save();
+//Animated Sphere
+var Sphere = JSON.parse( '{"radius": 3.8, "colour": "#ff0033"}' )
 ctx.beginPath();
-ctx.arc(w-40,h,Sphere2.radius,0,2*Math.PI); // draw the Sphere
+ctx.arc(x,y,Sphere.radius,0,2*Math.PI); // draw the Sphere
+ctx.fillStyle = Sphere['colour']; // what colour?
+ctx.fill();
+ctx.restore();
+
+var Sphere2 = JSON.parse( '{"radius": 9, "colour": "#ff0033"}' ); // simmple object
+ctx.beginPath();
+ctx.arc(w-60,h,Sphere2.radius,0,2*Math.PI); // draw the Sphere
 ctx.fillStyle = Sphere2['colour']; // what colour?
 ctx.fill();
 
-var Sphere3 = JSON.parse( '{"radius": 9, "colour": "#ff0033"}' ); // simmple object
+var Sphere3 = JSON.parse( '{"radius": 10, "colour": "#ff0033"}' ); // simmple object
+
 ctx.beginPath();
-ctx.arc(w-60,h,Sphere3.radius,0,2*Math.PI); // draw the Sphere
+ctx.arc(w-90,h,Sphere3.radius,0,2*Math.PI); // draw the Sphere
 ctx.fillStyle = Sphere3['colour']; // what colour?
 ctx.fill();
 
-var Sphere4 = JSON.parse( '{"radius": 10, "colour": "#ff0033"}' ); // simmple object
-
+var Sphere4 = JSON.parse( '{"radius": 15, "colour": "#ff0033"}' ); // simmple object
 ctx.beginPath();
-ctx.arc(w-90,h,Sphere4.radius,0,2*Math.PI); // draw the Sphere
+ctx.arc(w-120,h,Sphere4.radius,0,2*Math.PI); // draw the Sphere
 ctx.fillStyle = Sphere4['colour']; // what colour?
 ctx.fill();
 
-var Sphere5 = JSON.parse( '{"radius": 15, "colour": "#ff0033"}' ); // simmple object
+var Sphere5 = JSON.parse( '{"radius": 45, "colour": "#ff0033"}' ); // simmple object
 ctx.beginPath();
-ctx.arc(w-120,h,Sphere5.radius,0,2*Math.PI); // draw the Sphere
+ctx.arc(w-200,h,Sphere5.radius,0,2*Math.PI); // draw the Sphere
 ctx.fillStyle = Sphere5['colour']; // what colour?
 ctx.fill();
 
-var Sphere6 = JSON.parse( '{"radius": 45, "colour": "#ff0033"}' ); // simmple object
+var Sphere6 = JSON.parse( '{"radius": 35, "colour": "#ff0033"}' ); // simmple object
 ctx.beginPath();
-ctx.arc(w-200,h,Sphere6.radius,0,2*Math.PI); // draw the Sphere
+ctx.arc(w-290,h,Sphere6.radius,0,2*Math.PI); // draw the Sphere
 ctx.fillStyle = Sphere6['colour']; // what colour?
 ctx.fill();
 
-var Sphere7 = JSON.parse( '{"radius": 35, "colour": "#ff0033"}' ); // simmple object
+var Sphere7 = JSON.parse( '{"radius": 23, "colour": "#ff0033"}' ); // simmple object
 ctx.beginPath();
-ctx.arc(w-290,h,Sphere7.radius,0,2*Math.PI); // draw the Sphere
+ctx.arc(w-360,h,Sphere7.radius,0,2*Math.PI); // draw the Sphere
 ctx.fillStyle = Sphere7['colour']; // what colour?
 ctx.fill();
 
-var Sphere8 = JSON.parse( '{"radius": 23, "colour": "#ff0033"}' ); // simmple object
+var Sphere8 = JSON.parse( '{"radius": 20, "colour": "#ff0033"}' ); // simmple object
 ctx.beginPath();
-ctx.arc(w-360,h,Sphere8.radius,0,2*Math.PI); // draw the Sphere
+ctx.arc(w-420,h,Sphere8.radius,0,2*Math.PI); // draw the Sphere
 ctx.fillStyle = Sphere8['colour']; // what colour?
 ctx.fill();
-
-var Sphere9 = JSON.parse( '{"radius": 20, "colour": "#ff0033"}' ); // simmple object
-ctx.beginPath();
-ctx.arc(w-420,h,Sphere9.radius,0,2*Math.PI); // draw the Sphere
-ctx.fillStyle = Sphere9['colour']; // what colour?
-ctx.fill();
-
-
-
-   // ctx.save();
-    var Sphere = JSON.parse( '{"radius": 40, "colour": "red"}' ); 
-
-    ctx.beginPath();
-    ctx.arc(x,y,Sphere.radius,0,2*Math.PI); // draw the Sphere
-    ctx.fillStyle = Sphere['colour']; // what colour?
-    ctx.fill();
-    ctx.restore();
-
-
 
 };
 
