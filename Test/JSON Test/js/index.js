@@ -8,10 +8,23 @@ var angle = 3 * Math.PI / 180;
 var cx = canvas.width/2;
 var cy = canvas.height/2;
 var radius = 40;
+var radius2 = 60;
+var radius3 = 90;
+var radius4 = 120;
+var radius5 = 205;
+var radius6 = 290;
+var radius7 = 360;
+var radius8 = 420;
 
 function draw(x,y)
 {
   ctx.clearRect(0, 0, w*2, h*2);
+
+var Orbit2 = JSON.parse( '{"radius": 40, "colour": "none"}' ); // simmple object
+ctx.beginPath();
+ctx.arc(w,h,Orbit2.radius,0,2*Math.PI); // draw the Orbit
+ctx.fillStyle = Orbit2['colour']; // what colour?
+ctx.stroke();
 
 var Orbit2 = JSON.parse( '{"radius": 60, "colour": "none"}' ); // simmple object
 ctx.beginPath();
@@ -75,9 +88,9 @@ ctx.beginPath();
 ctx.arc(w-60,h,Sphere2.radius,0,2*Math.PI); // draw the Sphere
 ctx.fillStyle = Sphere2['colour']; // what colour?
 ctx.fill();
+ctx.restore();
 
 var Sphere3 = JSON.parse( '{"radius": 10, "colour": "#ff0033"}' ); // simmple object
-
 ctx.beginPath();
 ctx.arc(w-90,h,Sphere3.radius,0,2*Math.PI); // draw the Sphere
 ctx.fillStyle = Sphere3['colour']; // what colour?
@@ -149,7 +162,6 @@ function animate() {
         ctx.beginPath();
         ctx.arc(cx, cy, radius, 0, Math.PI * 2, false);
         ctx.closePath();
-        ctx.stroke();
 
     }, 1000 / fps);
 }
