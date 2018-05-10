@@ -1,63 +1,273 @@
-<DOCTYPE html>
-<html>
-<style> canvas {
-    border: 1px solid;
-
-}</style>
-<script>
-var sun = new Image();
-var moon = new Image();
-var earth = new Image();
-function init() {
-  sun.src = 'https://mdn.mozillademos.org/files/1456/Canvas_sun.png';
-  moon.src = 'https://mdn.mozillademos.org/files/1443/Canvas_moon.png';
-  earth.src = 'https://mdn.mozillademos.org/files/1429/Canvas_earth.png';
-  window.requestAnimationFrame(draw);
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Nearby Student Radar</title>
+<style type="text/css">
+	*{
+	margin:0;
+	padding:0p;
+	font-family:"arial";
 }
 
-function draw() {
-  var ctx = document.getElementById('canvas').getContext('2d');
-
-  ctx.globalCompositeOperation = 'destination-over';
-  ctx.clearRect(0, 0, 300, 300); // clear canvas
-
-  ctx.fillStyle = 'rgba(0, 0, 0, 0.4)';
-  ctx.strokeStyle = 'rgba(0, 153, 255, 0.4)';
-  ctx.save();
-  ctx.translate(150, 150);
-
-  // Earth
-  var time = new Date();
-  ctx.rotate(((2 * Math.PI) / 60) * time.getSeconds() + ((2 * Math.PI) / 60000) * time.getMilliseconds());
-  ctx.translate(105, 0);
-  ctx.fillRect(0, -12, 50, 24); // Shadow
-  ctx.drawImage(earth, -12, -12);
-
-  // Moon
-  ctx.save();
-  ctx.rotate(((2 * Math.PI) / 6) * time.getSeconds() + ((2 * Math.PI) / 6000) * time.getMilliseconds());
-  ctx.translate(0, 28.5);
-  ctx.drawImage(moon, -3.5, -3.5);
-  ctx.restore();
-
-  ctx.restore();
-  
-  ctx.beginPath();
-  ctx.arc(150, 150, 105, 0, Math.PI * 2, false); // Earth orbit
-  ctx.stroke();
- 
-  ctx.drawImage(sun, 0, 0, 300, 300);
-
-  window.requestAnimationFrame(draw);
+body{
+	background:black;   
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
 }
 
-init();
+ul{
+	list-style:none;
+}
+
+li{
+	display:inline-block;
+}
+
+.body{
+	margin:0 auto;
+	width:1000px;
+	padding-top:40px;     
+}
+
+#canvas{
+}
+</style>
+<script type="text/javascript">
+	/*
+*
+*   Lior Amsalem Html5 Canvas- Solar System Experiment 2013
+*
+*   
+*
+*/
+
+window.onload = function(){
+    if(navigator.appVersion.indexOf("MSIE 7.") != -1 || navigator.appVersion.indexOf("MSIE 8.") != -1){
+        alert("Please don't use old IE browser");
+    }
+    
+	var canvas = document.getElementById("canvas"),
+		ctx = canvas.getContext("2d"),
+		cw  = canvas.width,
+		ch  = canvas.height,
+		time = 1;
+    
+    /*set support for requestAnimationFrame - ovrride method */
+    window.requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || function(callback){window.setTimeout(callback, 1000/60);}
+
+    
+	function circle(radius,color,x,y){
+		/*set default*/
+		x = typeof x !== "undefined" ? x : cw/2;
+		y = typeof y !== "undefined" ? y : ch/2;
+		
+		ctx.beginPath();
+		ctx.fillStyle = color;
+		ctx.arc(x,y,radius,0,2*Math.PI,true);   //true = clockwise, false = counterclock
+	
+		ctx.fill();
+		ctx.closePath();
+	}
+	
+    function circleStroke(radius,strokeColor,x,y,lineWidth){
+		ctx.beginPath();
+		ctx.arc(x,y,radius,0,2*Math.PI,true);
+		ctx.lineWidth = lineWidth;
+		ctx.strokeStyle = strokeColor;
+		ctx.stroke();
+		ctx.closePath();
+	}
+	
+	function line(ax,ay,bx,by){
+		ctx.beginPath();
+		ctx.moveTo(ax*2,ay);
+		ctx.lineTo(bx,by);
+		ctx.strokeStyle = "rgba(255, 255, 255,0.12)";
+		ctx.stroke();
+		ctx.closePath();
+	}
+	
+	function text(text,color,font,x,y){
+		ctx.beginPath();
+		ctx.font = font;
+		ctx.fillStyle = color;
+		ctx.fillText(text,x,y);
+		ctx.closePath();
+		//console.log(text);
+	}
+		
+	function animate(){
+		
+		ctx.save();
+		ctx.beginPath();
+		ctx.fillStyle = "white";
+		ctx.fillRect(0,0,cw,ch);
+		ctx.closePath();
+        
+		//Core - center
+		ctx.translate(cw/2,ch/2);
+		circle(25,"gray",0,0);
+		
+		//text("Core", "black","15pt arial", -20,7);
+		
+		//1 black line
+		circleStroke(40,"black",0,0,"1");
+		
+		//1
+		ctx.rotate(time / 30);  /*.restore and .save doesn't work on rotate()*/
+		ctx.translate(40,0);
+		circle(3.8,"#ff0033",0,0);
+		
+		//line(-40,0,0,0);
+		
+		//2 black line                
+		ctx.translate(-40,0);   //reset translate
+		circleStroke(60,"black",0,0,"1");
+		
+		//2
+		ctx.rotate(time / 100 - (time / 90));  /*.restore and .save doesn't work on rotate()*/		ctx.translate(60,0);
+		circle(9,"#ff0033",0,0);
+		
+		line(-60,0,0,0);
+		
+		//3 black line
+		ctx.translate(-60,0);
+		circleStroke(90,"black",0,0,"2");
+		
+		//3
+		ctx.rotate(time / 100 - (time / 80));
+		ctx.translate(90,0);
+		circle(10,"#ff0033",0,0);
+		
+		//line(-90,0,0,0);
+		
+		//Moon.. nobody likes the moon anyway :P
+		//  ctx.rotate(time/120);
+		//  ctx.translate(20,0);
+		//   circle(4,"black",0,0);
+		
+		//4 black line
+		ctx.translate(-90,0);
+		circleStroke(120,"black",0,0,"2");
+		
+		//4
+		ctx.rotate(time / 120 - (time / 50));
+		ctx.translate(120,0);
+		circle(15,"#ff0033",0,0);
+		
+		//line(-120,0,0,0);
+		
+		
+		//asteroid belt 
+		ctx.translate(-120,0);
+		//circleStroke(160,"#151515",0,0,"35");
+		
+		
+		//5 black line
+		ctx.translate(0,0);
+		circleStroke(220,"black",0,0,"2");
+		
+		//5
+		ctx.rotate(time / 120 - (time / 50));
+		ctx.translate(220,0);
+		circle(45,"#ff0033",0,0);
+		
+		//line(-220,0,0,0);
+		
+		//6 black line
+		ctx.translate(-220,0);
+		circleStroke(300,"black",0,0,"2");
+		
+		//6
+		ctx.rotate(time / 120 - (time / 90));
+		ctx.translate(300,0);
+		circle(35,"#ff0033",0,0);
+		
+		//line(-300,0,0,0);
+		
+		//6 asteroid belt 
+		ctx.translate(0,0);
+		//circleStroke(50,"#747474",0,0,"3");
+		
+		//7 black line
+		ctx.translate(-300,0);
+		circleStroke(340,"black",0,0,"2");
+		
+		//7
+		ctx.rotate(time / 120 - (time / 90));
+		ctx.translate(-340,0);
+		circle(23,"#ff0033",0,0);
+		
+		//line(340,0,0,0);
+		
+		//8 black line
+		ctx.translate(340,0);
+		circleStroke(380,"black",0,0,"2");
+		
+		//8
+		ctx.rotate(time / 120 - (time / 140));
+		ctx.translate(-380,0);
+		circle(20,"#ff0033",0,0);
+		circleStroke(22,"grey",0,0);
+		
+		//line(380,0,0,0);
+		
+		ctx.restore();
+		time++;
+	//  console.log(time);
+		window.requestAnimationFrame(animate);
+	}
+	
+    window.requestAnimationFrame(animate);
+
+           //react infomation
+        i = 0, r;
+
+       // on hover the colour of the rectangles are blue
+        while (r = rects[i++])
+            context.rect(r.x, r.y, r.w, r.h);
+            context.fillStyle = "blue";
+            context.fill();
+
+        canvas.onmousemove = function (e) {
+
+           
+            var rect = this.getBoundingClientRect(),
+                x = e.clientX - rect.left,
+                y = e.clientY - rect.top,
+                i = 0, r;
+
+            context.clearRect(0, 0, canvas.width, canvas.height);
+
+            // off hover the colour of the rectangles are yellow
+            while (r = rects[i++]) {
+              
+                context.beginPath();
+                context.rect(r.x, r.y, r.w, r.h);
+                context.fillStyle = context.isPointInPath(x, y) ? "blue":"yellow";
+                context.fill();
+            }
+
+        };
+}    
+    /*  links:
+        
+        http://www.bareket-astro.com/solar-system/solar-system-model-in-real-size-ratio-aspect.html
+        https://developer.mozilla.org/en-US/docs/Web/API/window.requestAnimationFrame
+        http://stackoverflow.com/questions/894860/set-a-default-parameter-value-for-a-javascript-function
+        
+    */
 </script>
 
+</head>
 <body>
 
-<canvas id="canvas" width="300" height="300"></canvas>
-
+<div class="body">
+            <canvas id="canvas" height="800" width="1000"></canvas>
+            <button id="startButton" type="button">Start</button><!-- start button-->
+ </div>
 </body>
-
 </html>

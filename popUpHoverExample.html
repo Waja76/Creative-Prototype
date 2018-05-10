@@ -1,0 +1,48 @@
+<!--from   w  w w .ja v a  2 s  .c o  m-->
+<!DOCTYPE html>
+<html>
+<head>
+<script type='text/javascript'
+  src='http://code.jquery.com/jquery-1.9.1.js'></script>
+<script type='text/javascript'>//<![CDATA[
+
+            // function to build circle
+            function circleShape(x, y, r,ctx) {
+                ctx.beginPath();
+                ctx.fillStyle = "#ff0033";
+                ctx.lineWidth = 5;
+            ctx.stroke(); 
+                ctx.arc(x, y, r, 0, Math.PI * 2, true);
+            }
+
+$(window).load(function(){
+    var ctx = document.getElementById('canvas').getContext('2d');
+    // does not seem to affect code
+    //ctx.stroke = "black";
+    // draws shape
+    //ctx.beginPath();
+    //ctx.arc(95,50,40,0,2*Math.PI);
+    // breaks when put in
+    circleShape(95,50,40,ctx);
+    // does not seem to affect code
+    //ctx.fillStyle = '#ff0033';
+    ctx.fill();
+    $('#canvas').hover( function() {
+        // on hover turns black
+            ctx.strokeStyle = 'grey';
+            ctx.lineWidth = 5;
+            ctx.stroke();
+        },
+        // on hover turns red
+        function() {
+            ctx.strokeStyle = '#ff0033';
+            ctx.lineWidth = 0;
+            ctx.stroke();        
+    });
+});//]]>  
+</script>
+</head>
+<body>
+  <canvas id='canvas'></canvas>
+</body>
+</html>
