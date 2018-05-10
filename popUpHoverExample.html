@@ -23,9 +23,15 @@ $(window).load(function(){
     //ctx.beginPath();
     //ctx.arc(95,50,40,0,2*Math.PI);
     // breaks when put in
-    circleShape(95,50,40,ctx);
+    //circleShape(95,50,40,ctx);
     // does not seem to affect code
     //ctx.fillStyle = '#ff0033';
+    //ctx.fill();
+
+    var Sphere = JSON.parse( '{"radius": 40, "colour": "#ff0033"}' )
+    ctx.beginPath();
+    ctx.arc(95,50,Sphere.radius,0,2*Math.PI); // draw the Sphere
+    ctx.fillStyle = Sphere['colour']; // what colour?
     ctx.fill();
     $('#canvas').hover( function() {
         // on hover turns black
