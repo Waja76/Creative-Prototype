@@ -15,15 +15,20 @@ var radius5 = 205;
 var radius6 = 290;
 var radius7 = 360;
 var radius8 = 420;
-
-var orbits=1;
+var orbitRad =60;
+var orbits=7;
 var orbitDias = [20,40,60,80,100,120]; 
-var sphereDias = [5,10,12,15,18,12]; 
+var sphereDias = [18,18,18,18,18,18]; 
 var spherePositionX = [400,200,300,500,550,600];//randomSphereX(),randomSphereX(),randomSphereX(),randomSphereX(),randomSphereX(),randomSphereX()]; 
 var spherePositionY = [400,600,350,300,425,355];//randomSphereY(),randomSphereY(),randomSphereY(),randomSphereY(),randomSphereY(),randomSphereY()]; 
 var sphereColours = ["red","green","yellow","blue","cyan","purple"];
 var rdmove= 0;
 var change = -1;
+
+var person;
+
+
+
 function positiveOrNegative() {
      change = -1 + Math.round(Math.random()) * 2;  
     }
@@ -40,15 +45,21 @@ function randomSphereY() {
      rdmove = Math.floor((Math.random()* canvas.height) +0);
    
 }
-function sphere(radius,color,x,y){
+function sphere(radius,color,x,y)
+{
     ctx.beginPath();
     ctx.fillStyle = color;
     ctx.arc(x,y,radius,0,2*Math.PI);
     ctx.fill()
+
     ctx.closePath();
 }
 
 
+
+function mouseOver() {
+    person.style.color = "red";
+}
 
 function orbitModel(rad, colour)
 {
@@ -56,32 +67,47 @@ ctx.beginPath();
 ctx.arc(w,h,rad,0,2*Math.PI); // draw the Orbit ctx.fillStyle = colour; // what colour?
 ctx.stroke();
 
+
+}
+function crossHairs()
+{
+    ctx.beginPath();
+ctx.moveTo(w, h- (orbits*orbitRad));
+ctx.lineTo(w,h+(orbits*orbitRad));
+ctx.moveTo(w- (orbits*orbitRad),h);
+ctx.lineTo(w+(orbits*orbitRad),h);
+ctx.stroke();
 }
 
+function mouseOver() {
+    document.getElementById("person").style.color = "red";
+}
+ function mouseDown() {
+   person.style.color = "red";
+}
 var currentRad = 20;
 function draw()
 {
   ctx.clearRect(0, 0, w*2, h*2);
- for(i=0;i<=orbits;i++)
+crossHairs();
+sphere(20, "pink",w,h);
+ for(i=1;i<=orbits;i++)
 {
-    if(orbitDias[0]>= orbitDias[i])
+ 
     
-    orbitModel(orbitDias[i]*1.01,"#ff0033");
+    orbitModel(i*orbitRad,"#ff0033");
 
-       if(orbitDias[i]>w)
-     orbitDias[i]=20;
-    else
-       orbitDias[i]=orbitDias[i]*1.01;
-    
-
+ 
 }
 
 
 for(i=0;i<=5;i++)
 {
+  //  if(e.clientX>=spherePositionX[i]-sphereDias[i] & e.clientX<=spherePositionX[i]+sphereDias[i] &e.clientY>=spherePositionY[i]-sphereDias[i] &e.clientX>=spherePositionY[i]-sphereDias[i] )
+  //  sphere(sphereDias[i],"black",spherePositionX[i],spherePositionY[i]);
+   // else
+   person=  sphere(sphereDias[i],sphereColours[i],spherePositionX[i],spherePositionY[i]);
 
-
-    sphere(sphereDias[i],sphereColours[i],spherePositionX[i],spherePositionY[i]);
 
 }
   
