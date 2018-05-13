@@ -4,16 +4,44 @@ canvas{
     bottom: 0;
     left: 0;
     right: 0;
+   
     margin:auto;
     /*border: 1px solid mediumblue;*/
 
 }
 
-#myBtn{
-	background-color: red;
-	color: white;
+#find{
+	  background-color: orange;
+    border-radius: 12px;
+    color: white;
+    padding: 5px 5px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
 }
 
-#Sphere
-      position: relative;
-      cursor: pointer;
+#student {
+    border: none;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    display: block;
+}
+
+#student1 {border-radius: 12px; padding: 5px 5px; background-color: red; color: white;} 
+#student2 {border-radius: 12px; padding: 5px 5px; background-color: green; color: white;} 
+#student3 {border-radius: 12px; padding: 5px 5px; background-color: yellow; color: black;}
+#student4 {border-radius: 12px; padding: 5px 5px; background-color: blue; color: white;}
+#student5 {border-radius: 12px; padding: 5px 5px; background-color: cyan; color: black;} 
+#student6 {border-radius: 12px; padding: 5px 5px; background-color: purple; color: white;} 
+#student7 {border-radius: 12px; padding: 5px 5px; background-color: burlywood; color: white;} 
+#student8 {border-radius: 12px; padding: 5px 5px; background-color: teal; color: white;} 
+#student9 {border-radius: 12px; padding: 5px 5px; background-color: darkgoldenrod; color: white;}
+#student10 {border-radius: 12px; padding: 5px 5px; background-color: deeppink; color: white;}
+#student11 {border-radius: 12px; padding: 5px 5px; background-color: lightblue; color: white;}
+

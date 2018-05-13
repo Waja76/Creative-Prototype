@@ -22,6 +22,7 @@ var sphereDias = [18,18,18,18,18,18,18,18,18,18,18];
 var spherePositionX = [400,200,300,500,550,600,200,300,500,550,600];//randomSphereX(),randomSphereX(),randomSphereX(),randomSphereX(),randomSphereX(),randomSphereX()]; 
 var spherePositionY = [400,600,350,300,425,355,600,350,300,425,355];//randomSphereY(),randomSphereY(),randomSphereY(),randomSphereY(),randomSphereY(),randomSphereY()]; 
 var sphereColours = ["red","green","yellow","blue","cyan","purple", "burlywood", "teal", "darkgoldenrod", "deeppink","lightblue"];
+var studentNames = ["John Readie","Geof Green","Mike Yelovski","Rebecca Blue","Janet Teale","Fred Pope", "Chris Wood", "Janet Teale", "Paul Gold", "Dave Axelrod","Lynne Sky"];
 var rdmove= 0;
 var change = -1;
 
@@ -60,17 +61,41 @@ function sphere(radius,color,x,y)
 
     ctx.closePath();
 }
+function addItem(){
+    var ul = document.getElementById("dynamic-list");
+    var candidate = document.getElementById("candidate");
+    var li = document.createElement("li");
+    li.setAttribute('id',candidate.value);
+    li.appendChild(document.createTextNode(candidate.value));
+    ul.appendChild(li);
+}
 
+function removeItem(){
+    var ul = document.getElementById("dynamic-list");
+    var candidate = document.getElementById("candidate");
+    var item = document.getElementById(candidate.value);
+    ul.removeChild(item);
+}
 function findStudentsFunction() {
-   
-   noOfStudents=10;
+
+for(i=1; i<=noOfStudents;i++)
+{
+var element = document.getElementById(studentNames[i-1]);
+element.parentNode.removeChild(element);
+}
+noOfStudents=Math.floor((Math.random()* 10) +0);
 for(i=1;i<=noOfStudents;i++)
 {
     randomStartPostion();
     spherePositionX[i-1]=randomX;
    
     spherePositionY[i-1]=randomY;
-   
+
+    var btn = document.createElement("BUTTON" );
+    btn.id="student"+i;
+    var t = document.createTextNode(btn.id);//studentNames[i-1]);
+    btn.appendChild(t);
+    document.body.appendChild(btn);
 }
     
 }
@@ -89,7 +114,7 @@ ctx.stroke();
 }
 function crossHairs()
 {
-    ctx.beginPath();
+ctx.beginPath();
 ctx.moveTo(w, h- (orbits*orbitRad));
 ctx.lineTo(w,h+(orbits*orbitRad));
 ctx.moveTo(w- (orbits*orbitRad),h);
@@ -181,17 +206,6 @@ function animate() {
     }, 1000 / fps);
 }
 animate();
-
-
-
-var input = document.getElementById("myInput");
-input.addEventListener("keyup", function(event) {
-    event.preventDefault();
-    if (event.keyCode === 13) {
-        document.getElementById("myBtn").click();
-    }
-    });
-
 
 //init(); 
 
