@@ -18,14 +18,18 @@ var radius8 = 420;
 
 var orbits=6;
 var orbitDias = [20,40,100,225,300,350];
-var sphereDias = [5,10,12,15,18,12];
+var  = [5,10,12,15,18,12];
+//var sphereXoffset =[sphereDias[0]+sphereDias[0],w-orbitDias[i] ,w-orbitDias[i] ,w-orbitDias[i] ,w-orbitDias[i] ,w-orbitDias[i] ];
+//var sphereYoffset =[5,10,12,15,18,12];
+
 var sphereColours = ["red","green","yellow","blue","cyan","purple"];
 
 function sphere(radius,color,x,y){
     ctx.beginPath();
     ctx.fillStyle = color;
     ctx.arc(x,y,radius,0,2*Math.PI);
-    ctx.fill()
+    ctx.fill();
+  // fps= Math.floor((Math.random() * 40 + 1);
     ctx.closePath();
 }
 
@@ -43,13 +47,14 @@ function draw()
   ctx.clearRect(0, 0, w*2, h*2);
 
 var i ;
+
 for(i=0;i<=orbits;i++)
 {
    orbitModel(orbitDias[i],"#ff0033");
-     newX = w-orbitDias[i]  * Math.cos(angle);
-         newY = h + orbitDias[i] * Math.sin(angle);
+    newX = w-orbitDias[i]  * Math.cos(angle);
+     newY = h + orbitDias[i] * Math.sin(angle);
     sphere(sphereDias[i],sphereColours[i],newX,newY);
-
+    //angle=i * Math.PI / 180;
 }
   
 
@@ -79,7 +84,7 @@ function animate() {
         requestAnimationFrame(animate);
 
         // increase the angle of rotation
-        angle += 3 * Math.PI / 180;
+        angle += 2 * Math.PI / 180;
 
         // calculate the new ball.x / ball.y
         var newX = cx + radius * Math.cos(angle);

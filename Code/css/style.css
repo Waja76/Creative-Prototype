@@ -5,6 +5,13 @@ canvas{
     left: 0;
     right: 0;
     margin:auto;
+    /*border: 1px solid mediumblue;*/
+
+}
+
+#myBtn{
+	background-color: red;
+	color: white;
 }
 
 #Sphere

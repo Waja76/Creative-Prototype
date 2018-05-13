@@ -18,17 +18,23 @@ var radius8 = 420;
 var orbitRad =60;
 var orbits=7;
 var orbitDias = [20,40,60,80,100,120]; 
-var sphereDias = [18,18,18,18,18,18]; 
-var spherePositionX = [400,200,300,500,550,600];//randomSphereX(),randomSphereX(),randomSphereX(),randomSphereX(),randomSphereX(),randomSphereX()]; 
-var spherePositionY = [400,600,350,300,425,355];//randomSphereY(),randomSphereY(),randomSphereY(),randomSphereY(),randomSphereY(),randomSphereY()]; 
-var sphereColours = ["red","green","yellow","blue","cyan","purple"];
+var sphereDias = [18,18,18,18,18,18,18,18,18,18,18]; 
+var spherePositionX = [400,200,300,500,550,600,200,300,500,550,600];//randomSphereX(),randomSphereX(),randomSphereX(),randomSphereX(),randomSphereX(),randomSphereX()]; 
+var spherePositionY = [400,600,350,300,425,355,600,350,300,425,355];//randomSphereY(),randomSphereY(),randomSphereY(),randomSphereY(),randomSphereY(),randomSphereY()]; 
+var sphereColours = ["red","green","yellow","blue","cyan","purple", "burlywood", "teal", "darkgoldenrod", "deeppink","lightblue"];
 var rdmove= 0;
 var change = -1;
 
 var person;
+var randomX=0;
+var randomY=0;
+var noOfStudents=0;
 
-
-
+function randomStartPostion() {
+   // positiveOrNegative();
+     randomX = Math.random()*canvas.width ;
+      randomY = Math.random()*canvas.height ;
+}
 function positiveOrNegative() {
      change = -1 + Math.round(Math.random()) * 2;  
     }
@@ -55,7 +61,19 @@ function sphere(radius,color,x,y)
     ctx.closePath();
 }
 
-
+function findStudentsFunction() {
+   
+   noOfStudents=10;
+for(i=1;i<=noOfStudents;i++)
+{
+    randomStartPostion();
+    spherePositionX[i-1]=randomX;
+   
+    spherePositionY[i-1]=randomY;
+   
+}
+    
+}
 
 function mouseOver() {
     person.style.color = "red";
@@ -90,7 +108,7 @@ function draw()
 {
   ctx.clearRect(0, 0, w*2, h*2);
 crossHairs();
-sphere(20, "pink",w,h);
+sphere(20, "orange",w,h);
  for(i=1;i<=orbits;i++)
 {
  
@@ -101,12 +119,12 @@ sphere(20, "pink",w,h);
 }
 
 
-for(i=0;i<=5;i++)
+for(i=1;i<=noOfStudents;i++)
 {
   //  if(e.clientX>=spherePositionX[i]-sphereDias[i] & e.clientX<=spherePositionX[i]+sphereDias[i] &e.clientY>=spherePositionY[i]-sphereDias[i] &e.clientX>=spherePositionY[i]-sphereDias[i] )
   //  sphere(sphereDias[i],"black",spherePositionX[i],spherePositionY[i]);
    // else
-   person=  sphere(sphereDias[i],sphereColours[i],spherePositionX[i],spherePositionY[i]);
+   person=  sphere(sphereDias[i-1],sphereColours[i-1],spherePositionX[i-1],spherePositionY[i-1]);
 
 
 }
@@ -144,14 +162,14 @@ function animate() {
 
         // calculate the new ball.x / ball.y
 
-        for(i=0;i<=5;i++)
+        for(i=1;i<=noOfStudents;i++)
             {         
              randomMove();
-        spherePositionX[i]=spherePositionX[i]+(rdmove/2);
+        spherePositionX[i-1]=spherePositionX[i-1]+(rdmove/2);
     // newX = newX+(rdmove);
      randomMove();
 
-       spherePositionY[i]=spherePositionY[i]+(rdmove/2);
+       spherePositionY[i-1]=spherePositionY[i-1]+(rdmove/2);
         }
         draw();
 
@@ -163,6 +181,17 @@ function animate() {
     }, 1000 / fps);
 }
 animate();
+
+
+
+var input = document.getElementById("myInput");
+input.addEventListener("keyup", function(event) {
+    event.preventDefault();
+    if (event.keyCode === 13) {
+        document.getElementById("myBtn").click();
+    }
+    });
+
 
 //init(); 
 
