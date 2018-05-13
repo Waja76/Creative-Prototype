@@ -31,6 +31,8 @@ var randomX=0;
 var randomY=0;
 var noOfStudents=0;
 
+var together =0;
+
 function randomStartPostion() {
    // positiveOrNegative();
      randomX = Math.random()*canvas.width ;
@@ -61,43 +63,62 @@ function sphere(radius,color,x,y)
 
     ctx.closePath();
 }
-function addItem(){
-    var ul = document.getElementById("dynamic-list");
-    var candidate = document.getElementById("candidate");
-    var li = document.createElement("li");
-    li.setAttribute('id',candidate.value);
-    li.appendChild(document.createTextNode(candidate.value));
-    ul.appendChild(li);
+function removeStudents()
+{
+        for(i=1;i<=noOfStudents;i++)
+    {
+       removeElement("student"+i);
+      
+    }
+}
+function bringTogether()
+{
+    
+    if(together==0)
+    together=1;
+    else
+       together=0;
+}
+function removeElement(id) {
+    var elem = document.getElementById(id);
+    return elem.parentNode.removeChild(elem);
 }
 
-function removeItem(){
-    var ul = document.getElementById("dynamic-list");
-    var candidate = document.getElementById("candidate");
-    var item = document.getElementById(candidate.value);
-    ul.removeChild(item);
+function ClearAndRefreshDocument()
+{
+    removeStudents();
+     findStudentsFunction();
+}
+
+function keyup(studentNane)
+{
+   alert("Say Hi To: "+studentNane );
 }
 function findStudentsFunction() {
 
-for(i=1; i<=noOfStudents;i++)
-{
-var element = document.getElementById(studentNames[i-1]);
-element.parentNode.removeChild(element);
-}
-noOfStudents=Math.floor((Math.random()* 10) +0);
-for(i=1;i<=noOfStudents;i++)
-{
-    randomStartPostion();
-    spherePositionX[i-1]=randomX;
-   
-    spherePositionY[i-1]=randomY;
 
-    var btn = document.createElement("BUTTON" );
-    btn.id="student"+i;
-    var t = document.createTextNode(btn.id);//studentNames[i-1]);
-    btn.appendChild(t);
-    document.body.appendChild(btn);
-}
-    
+    noOfStudents=Math.floor((Math.random()* 10) +0);
+    for(i=1;i<=noOfStudents;i++)
+    {
+        randomStartPostion();
+        spherePositionX[i-1]=randomX;
+       
+        spherePositionY[i-1]=randomY;
+
+        var btn = document.createElement("BUTTON" );
+        btn.id="student"+i;
+
+       
+        var t = document.createTextNode(studentNames[i-1]);//studentNames[i-1]);
+        btn.appendChild(t);
+       
+        var d=document.createElement("div");
+        d.appendChild(btn);
+         document.body.appendChild(d);
+         var buttons = d.getElementsByTagName("BUTTON");
+        buttons[0].onclick = function(){ keyup(studentNames[i]) }
+    }
+        
 }
 
 function mouseOver() {
@@ -114,7 +135,7 @@ ctx.stroke();
 }
 function crossHairs()
 {
-ctx.beginPath();
+    ctx.beginPath();
 ctx.moveTo(w, h- (orbits*orbitRad));
 ctx.lineTo(w,h+(orbits*orbitRad));
 ctx.moveTo(w- (orbits*orbitRad),h);
@@ -188,13 +209,29 @@ function animate() {
         // calculate the new ball.x / ball.y
 
         for(i=1;i<=noOfStudents;i++)
-            {         
-             randomMove();
-        spherePositionX[i-1]=spherePositionX[i-1]+(rdmove/2);
-    // newX = newX+(rdmove);
-     randomMove();
+        {         
+                if(together==0)
+                {
+                    randomMove();
+                    spherePositionX[i-1]=spherePositionX[i-1]+(rdmove/2);
+                    // newX = newX+(rdmove);
+                    randomMove();
 
-       spherePositionY[i-1]=spherePositionY[i-1]+(rdmove/2);
+                    spherePositionY[i-1]=spherePositionY[i-1]+(rdmove/2);
+                }
+                else
+                {
+                    if(spherePositionX[i-1]==500 & spherePositionY[i-1]==500 )
+                    {
+                            spherePositionX[i-1]=500 ;
+                          spherePositionY[i-1]=500 ;
+                    }
+                    else
+                    {
+                        spherePositionX[i-1]= spherePositionX[i-1]+(500 - spherePositionX[i-1])/100;
+                          spherePositionY[i-1]=spherePositionY[i-1]+(500 - spherePositionY[i-1])/100;
+                    }
+                }
         }
         draw();
 
@@ -205,7 +242,14 @@ function animate() {
 
     }, 1000 / fps);
 }
+
+
 animate();
+
+
+
+
+
 
 //init(); 
 
