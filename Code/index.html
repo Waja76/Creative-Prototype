@@ -3,23 +3,28 @@
 
 <head>
   <meta charset="UTF-8">
+  <!–– Title of Prototype ––>
   <title>Nearby Student Radar</title>
-
+		
+	<!–– Link to cascade style sheet ––>
       <link rel="stylesheet" href="css/style.css">
 
 </head>
 
 <body>
+	<!–– Button to find students ––>
 	<button id="find" onclick="ClearAndRefreshDocument()">Find Nearby Students</button>
+	<!–– Breakpoint ––>
 	<br>
+	<!–– Button to bring students to center that dynamicaly changes once pressed to "Disperse Students" ––>
 	<input id="bringTogetherBtn" type="button" value="Come to Center" onclick="return bringTogetherBtn(this);" />
 	
 	<br>
 	
 	
-	
+	<!–– Canvas Element ––>
   <canvas id="myCanvas" height="1000" width="1000"></canvas>
-  
+  	<!–– Link to Javascript File ––>
     <script  src="js/index2.js"></script>
 
 </body>
