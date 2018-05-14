@@ -152,6 +152,7 @@ function mouseOver() {
 var currentRad = 20;
 function draw()
 {
+
   ctx.clearRect(0, 0, w*2, h*2);
 crossHairs();
 sphere(20, "orange",w,h);
@@ -175,7 +176,29 @@ for(i=1;i<=noOfStudents;i++)
 
 }
   
+ctx.beginPath();
+ctx.font = "30px Arial";
+ctx.fillStyle = "black";
+ctx.fillText("Kirkham Building",50,100);
+ctx.closePath();
 
+ctx.beginPath();
+ctx.font = "30px Arial";
+ctx.fillStyle = "black";
+ctx.fillText("Media Factory",50,900);
+ctx.closePath();
+
+ctx.beginPath();
+ctx.font = "30px Arial";
+ctx.fillStyle = "black";
+ctx.fillText("C&T Building",800,100);
+ctx.closePath();
+
+ctx.beginPath();
+ctx.font = "30px Arial";
+ctx.fillStyle = "black";
+ctx.fillText("Car Park",800,900);
+ctx.closePath();
 
 
 };
