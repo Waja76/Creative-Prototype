@@ -71,13 +71,21 @@ function removeStudents()
       
     }
 }
-function bringTogether()
+function bringTogetherBtn(btn)
 {
     
     if(together==0)
-    together=1;
+    {
+        // var btn = document.getElementById(bringTogether);
+         btn.value="Disperse Students";
+        together=1;
+    }
     else
-       together=0;
+    {
+        // var btn = document.getElementById(bringTogether);
+         btn.value="Come to Center";
+         together=0;
+    }
 }
 function removeElement(id) {
     var elem = document.getElementById(id);
@@ -105,18 +113,26 @@ function findStudentsFunction() {
        
         spherePositionY[i-1]=randomY;
 
-        var btn = document.createElement("BUTTON" );
-        btn.id="student"+i;
-
+         var btn = document.createElement("BUTTON" );
+         btn.id="student"+i;
        
-        var t = document.createTextNode(studentNames[i-1]);//studentNames[i-1]);
-        btn.appendChild(t);
+         var t = document.createTextNode(studentNames[i-1]);
+         btn.appendChild(t);
+         btn.onclick= function(){              
+             alert("Say Hi To: "+this.textContent ); 
+        };     
        
+        // btn = document.createElement('input');
+        // btn.type = 'button';
+        // btn.value = studentNames[i-1];
+        // btn.id = "student"+i;
+        // btn.onclick = function () {
+        //       alert('Say Hi To: '+this.value);             
+        // };
         var d=document.createElement("div");
         d.appendChild(btn);
-         document.body.appendChild(d);
-         var buttons = d.getElementsByTagName("BUTTON");
-        buttons[0].onclick = function(){ keyup(studentNames[i]) }
+        document.body.appendChild(d);
+          
     }
         
 }
@@ -152,7 +168,6 @@ function mouseOver() {
 var currentRad = 20;
 function draw()
 {
-
   ctx.clearRect(0, 0, w*2, h*2);
 crossHairs();
 sphere(20, "orange",w,h);

@@ -22,7 +22,7 @@ canvas{
     cursor: pointer;
     width: 180px;
 }
-#bringTogether{
+#bringTogetherBtn{
     border-radius: 12px;
     color: black;
     padding: 5px 5px;
